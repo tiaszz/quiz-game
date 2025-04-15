@@ -2,22 +2,34 @@ package readfile
 
 import (
 	"encoding/csv"
-	"fmt"
-	"io"
 	"log"
-	"strings"
+	"os"
+	"strconv"
 )
 
-func ReadCsvFile(file string) {
-	r := csv.NewReader(strings.NewReader(file))
-	for {
-		record, err := r.Read()
-		if err == io.EOF {
-			break
-		}
+func ReadCsvFile(file string) [][]string {
+	f, err := os.Open(file)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	r := csv.NewReader(f)
+	record, err := r.ReadAll()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return record
+}
+
+func GetAnswerInt(record [][]string) []int {
+	answers := []int{}
+	for _, num := range record {
+		answersString, err := strconv.Atoi(num[1])
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println(record)
+		answers = append(answers, answersString)
 	}
+	return answers
 }
