@@ -3,12 +3,13 @@ package main
 import (
 	"fmt"
 
-	readfile "github.com/tiaszz/quiz-game/readFile"
+	"github.com/tiaszz/quiz-game/game"
 )
 
 func main() {
-	record := readfile.ReadCsvFile("problems.csv")
-	answers := readfile.GetAnswerInt(record)
-	fmt.Println(record)
-	fmt.Println(answers)
+	// record := game.ReadCsvFile("problems.csv")
+	// answers := game.GetAnswerInt(record)
+	var userInput int
+	game.GetUserInput(&userInput)
+	fmt.Println(userInput)
 }

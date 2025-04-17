@@ -1,4 +1,4 @@
-package readfile
+package game
 
 import (
 	"encoding/csv"
