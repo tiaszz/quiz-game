@@ -22,6 +22,8 @@ func ReadCsvFile(file string) [][]string {
 	return record
 }
 
+// GetAnswerInt gets the answers from the csv file.
+// And transforming it in an int
 func GetAnswerInt(record [][]string) []int {
 	answers := []int{}
 	for _, num := range record {

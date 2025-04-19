@@ -7,9 +7,18 @@ import (
 )
 
 func main() {
-	// record := game.ReadCsvFile("problems.csv")
-	// answers := game.GetAnswerInt(record)
-	var userInput int
-	game.GetUserInput(&userInput)
-	fmt.Println(userInput)
+	var input int
+	file := game.Flags()
+	record := game.ReadCsvFile(file)
+	answers := game.GetAnswerInt(record)
+
+	for i, p := range record {
+		fmt.Printf("Problem #%d: %s = ", i+1, p[0])
+		game.GetUserInput(&input)
+		if input == answers[i] {
+			fmt.Println("Correct answer")
+		} else {
+			fmt.Println("Incorrect answer")
+		}
+	}
 }
