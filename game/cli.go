@@ -14,12 +14,13 @@ func GetUserInput(input *int) {
 }
 
 // Create the csv flag to read files from it
-func Flags() string {
+func Flags() (string, int) {
 	csvFilename := flag.String(
 		"csv",
 		"problems.csv",
 		"a csv file in the format of 'question,answer'",
 	)
+	timeLimit := flag.Int("limit", 30, "The time limit for the quiz in seconds")
 	flag.Parse()
-	return *csvFilename
+	return *csvFilename, *timeLimit
 }
